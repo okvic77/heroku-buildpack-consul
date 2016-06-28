@@ -12,7 +12,7 @@ ENV_DIR=${3:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
 
-mkdir -p "$BUILD_DIR/.kubernetes/bin"
+mkdir -p "$BUILD_DIR/.consul/bin"
 cd $BUILD_DIR
 
 mkdir -p $BUILD_DIR/.profile.d
@@ -82,7 +82,7 @@ if [ ! -f $file ]; then
 fi
 
 
-filedest=$BUILD_DIR/.kubernetes/bin/consul
+filedest=$BUILD_DIR/.consul/bin/consul
 unzip $file -d $filedest
 ls $filedest
 chmod +x $file
