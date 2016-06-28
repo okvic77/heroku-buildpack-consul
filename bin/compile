@@ -67,24 +67,26 @@ else
   exit 3
 fi
 release_url="https://releases.hashicorp.com/consul/${release}/consul_${release}_${platform}_${arch}.zip"
-file=${CACHE_DIR}/${release}_${platform}_${arch}_consul
+file=${CACHE_DIR}/${release}_${platform}_${arch}_consul_bin
+filetmp=${CACHE_DIR}/${release}_${platform}_${arch}_consul_tmp
+filetmp2=${CACHE_DIR}/${release}_${platform}_${arch}_consul_tmp2
 
 if [ ! -f $file ]; then
   echo "Archivo no encontrado en cache, descargando" | indent
   if [[ $(which wget) ]]; then
-    wget -q -O ${file} ${release_url}
+    wget -q -O ${filetmp} ${release_url}
   elif [[ $(which curl) ]]; then
-    curl -s -L -o ${file} ${release_url}
+    curl -s -L -o ${filetmp} ${release_url}
   else
     echo "Couldn't find curl or wget.  Bailing out."
     exit 1
   fi
+
+
+  unzip $filetmp -d $filetmp2
+  mv $filetmp2/consul $file
+
 fi
 
-
-filedest=$BUILD_DIR/.consul/bin/consul
-unzip $file -d $filedest
-ls $filedest
-chmod +x $file
 echo "Done" | indent
 exit 0
