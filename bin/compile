@@ -88,7 +88,7 @@ if [ ! -f $file ]; then
 
 fi
 
-filedest=$BUILD_DIR/.kubernetes/bin/kubectl
+filedest=$BUILD_DIR/.consul/bin/consul
 cp $file $filedest
 
 echo "Done" | indent
