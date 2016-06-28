@@ -29,12 +29,12 @@ indent() {
 
 # [ $# -eq 0 ] && { echo "Usage: $0 format" ; exit 1; }
 
-if [ ! -f $ENV_DIR/KUBERNETES_VERSION ]; then
+if [ ! -f $ENV_DIR/CONSUL_VERSION ]; then
   echo "Version 0.6.4" | indent
   release="0.6.4"
 else
   echo "Version definida." | indent
-  release=$(cat $ENV_DIR/KUBERNETES_VERSION);
+  release=$(cat $ENV_DIR/CONSUL_VERSION);
 fi
 
 echo "Version $release" | indent;
