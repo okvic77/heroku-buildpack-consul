@@ -88,5 +88,8 @@ if [ ! -f $file ]; then
 
 fi
 
+filedest=$BUILD_DIR/.kubernetes/bin/kubectl
+cp $file $filedest
+
 echo "Done" | indent
 exit 0
